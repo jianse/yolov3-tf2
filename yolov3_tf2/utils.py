@@ -1,7 +1,7 @@
 from absl import logging
 import numpy as np
 import tensorflow as tf
-import cv2
+from cv2 import cv2
 
 YOLOV3_LAYER_LIST = [
     'yolo_darknet',
@@ -121,10 +121,10 @@ def draw_labels(x, y, class_names):
     for i in range(len(boxes)):
         x1y1 = tuple((np.array(boxes[i][0:2]) * wh).astype(np.int32))
         x2y2 = tuple((np.array(boxes[i][2:4]) * wh).astype(np.int32))
-        img = cv2.rectangle(img, x1y1, x2y2, (255, 0, 0), 2)
+        img = cv2.rectangle(img, x1y1, x2y2, (255, 0, 0), 1)
         img = cv2.putText(img, class_names[classes[i]],
                           x1y1, cv2.FONT_HERSHEY_COMPLEX_SMALL,
-                          1, (0, 0, 255), 2)
+                          1, (0, 0, 255), 1)
     return img
 
 
